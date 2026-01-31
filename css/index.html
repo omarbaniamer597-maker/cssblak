@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGTL MIRROR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- صفحة الانتظار الزرقاء -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <img src="dm (1).png" alt="DIGTL MIRROR">
+        </div>
+        
+        <div class="loading-content">
+            <h1 class="loading-title">DIGTL MIRROR</h1>
+            <p class="loading-subtitle">متخصصة في تسهيل مشاريعك الرقمية</p>
+            
+            <div class="loading-animation">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+            
+            <div class="loading-progress">
+                <div class="loading-progress-bar"></div>
+            </div>
+            
+            <div class="percentage" id="percentage">0%</div>
+            <p class="loading-text" id="loadingText">جاري تحميل المحتوى...</p>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي للصفحة -->
+    <div class="main-content" id="mainContent">
+        <!-- شريط التقدم -->
+        <div class="scroll-progress" id="scrollProgress">
+            <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+        </div>
+
+        <!-- شريط جانبي لأزرار المشاريع -->
+        <div class="projects-sidebar" id="projectsSidebar">
+            <h3>المشاريع</h3>
+            <button class="project-sidebar-btn" data-project="website">
+                <i class="fas fa-laptop-code"></i> مواقع ويب
+            </button>
+            <button class="project-sidebar-btn" data-project="mobile">
+                <i class="fas fa-mobile-alt"></i> تطبيقات موبايل
+            </button>
+            <button class="project-sidebar-btn" data-project="system">
+                <i class="fas fa-building"></i> أنظمة الشركات
+            </button>
+            <button class="project-sidebar-btn" data-project="ecommerce">
+                <i class="fas fa-shopping-cart"></i> متاجر إلكترونية
+            </button>
+            <button class="project-sidebar-btn" data-project="finance">
+                <i class="fas fa-chart-line"></i> تطبيقات مالية
+            </button>
+            <button class="back-to-home-btn" id="backToHome">
+                <i class="fas fa-home"></i> العودة للرئيسية
+            </button>
+        </div>
+
+        <!-- تفاصيل المشروع (تظهر عند الضغط على زر المشروع) -->
+        <div class="project-details-overlay" id="projectDetails">
+            <div class="project-details-content">
+                <button class="close-project-btn" id="closeProjectBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <div class="project-details-header">
+                    <h2 id="projectTitle">عنوان المشروع</h2>
+                    <p id="projectDesc">وصف المشروع</p>
+                </div>
+                
+                <div class="project-details-body">
+                    <div class="project-details-image">
+                        <img id="projectImage" src="" alt="صورة المشروع">
+                    </div>
+                    
+                    <div class="project-details-info">
+                        <h3>تفاصيل المشروع</h3>
+                        <div class="project-features">
+                            <h4>المميزات الرئيسية</h4>
+                            <ul id="projectFeatures">
+                                <!-- سيتم ملؤها بالجافاسكريبت -->
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech-stack" id="projectTech">
+                            <!-- سيتم ملؤها بالجافاسكريبت -->
+                        </div>
+                        
+                        <div class="project-action-buttons">
+                            <button class="btn" id="viewLiveProject">عرض المشروع الحي</button>
+                            <button class="btn btn-outline" id="requestSimilar">طلب مشروع مماثل</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <img src="dm (1).png" alt="DIGTL MIRROR" class="logo-img">
+                    <div class="logo-text">
+                        <h1>DIGTL MIRROR</h1>
+                        <span>متخصصة في تسهيل مشاريعك الرقمية</span>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#services">خدماتنا</a></li>
+                        <li><a href="#projects">مشاريعنا</a></li>
+                        <li><a href="#team">فريق العمل</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- شريط التنقل الجانبي -->
+        <div class="side-navigation" id="sideNav">
+            <div class="nav-dot active" data-target="home" data-tooltip="الرئيسية"></div>
+            <div class="nav-dot" data-target="services" data-tooltip="خدماتنا"></div>
+            <div class="nav-dot" data-target="projects" data-tooltip="مشاريعنا"></div>
+            <div class="nav-dot" data-target="team" data-tooltip="فريق العمل"></div>
+            <div class="nav-dot" data-target="contact" data-tooltip="اتصل بنا"></div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h2>نطور حلول برمجية تواكب تطلعات أعمالك</h2>
+                    <p>نحن شركة برمجة متخصصة في تطوير حلول تقنية مبتكرة تساعد الشركات على النمو والازدهار في العصر الرقمي. نقدم تطبيقات ويب وموبايل مخصصة بأحدث التقنيات.</p>
+                    <button class="btn" id="showProjectsBtn">استعرض مشاريعنا</button>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="برمجة وتطوير">
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>خدماتنا المتخصصة</h2>
+                </div>
+                
+                <div class="services-container">
+                    <!-- تحليل البيانات -->
+                    <div class="service-card data-service">
+                        <div class="service-img">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="تحليل البيانات">
+                        </div>
+                        <div class="service-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>تحليل البيانات المتقدم</h3>
+                        <p>نقدم حلول تحليل بيانات متكاملة تساعدك على فهم بياناتك واستخراج رؤى قابلة للتنفيذ لاتخاذ قرارات مستنيرة.</p>
+                        <div class="features-list">
+                            <h4>التخصصات التي نغطيها:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> تحليل البيانات الضخمة</li>
+                                <li><i class="fas fa-check"></i> تحليل الأعمال والبيانات المالية</li>
+                                <li><i class="fas fa-check"></i> تحليل سلوك المستخدم</li>
+                                <li><i class="fas fa-check"></i> تحليل السوق والمنافسين</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- أنظمة الشركات الناشئة -->
+                    <div class="service-card system-service">
+                        <div class="service-img">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="أنظمة الشركات الناشئة">
+                        </div>
+                        <div class="service-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>أنظمة للشركات الناشئة</h3>
+                        <p>نطور أنظمة متكاملة للشركات الناشئة لتمكينها من إدارة عملياتها بكفاءة والتوسع بسرعة في السوق.</p>
+                        <div class="features-list">
+                            <h4>أنظمتنا تشمل:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> نظام إدارة العملاء (CRM)</li>
+                                <li><i class="fas fa-check"></i> نظام إدارة المشاريع والمهام</li>
+                                <li><i class="fas fa-check"></i> نظام المحاسبة والإدارة المالية</li>
+                                <li><i class="fas fa-check"></i> نظام إدارة الموارد البشرية</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- خدمات للأفراد -->
+                    <div class="service-card individual-service">
+                        <div class="service-img">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1176&q=80" alt="خدمات للأفراد">
+                        </div>
+                        <div class="service-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>خدمات برمجة للأفراد</h3>
+                        <p>نقدم حلول برمجية مخصصة للأفراد لمساعدتهم في تطوير مشاريعهم الشخصية وتحقيق أهدافهم التقنية.</p>
+                        <div class="features-list">
+                            <h4>خدماتنا للأفراد:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> تطوير مواقع شخصية ومهنية</li>
+                                <li><i class="fas fa-check"></i> تطوير تطبيقات للأفكار الشخصية</li>
+                                <li><i class="fas fa-check"></i> استشارات تقنية فردية</li>
+                                <li><i class="fas fa-check"></i> تطوير برمجيات خاصة</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- خدمات للجماعات -->
+                    <div class="service-card group-service">
+                        <div class="service-img">
+                            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="خدمات للجماعات">
+                        </div>
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>حلول برمجية للجماعات</h3>
+                        <p>نطور أنظمة تعاونية للفرق والمجموعات لتحسين التواصل والعمل الجماعي وزيادة الإنتاجية.</p>
+                        <div class="features-list">
+                            <h4>حلولنا للجماعات:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> منصات تعاون وعمل جماعي</li>
+                                <li><i class="fas fa-check"></i> أنظمة إدارة الفرق والمشاريع</li>
+                                <li><i class="fas fa-check"></i> تطبيقات التواصل الداخلي</li>
+                                <li><i class="fas fa-check"></i> حلول مشاركة الملفات والعمل</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <div class="container">
+                <div class="section-title">
+                    <h2>مشاريعنا وخدماتنا</h2>
+                </div>
+                
+                <div class="projects-container">
+                    <!-- خدمة إنشاء المواقع -->
+                    <div class="project-card" data-project="website">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="إنشاء المواقع">
+                            <div class="project-overlay">
+                                <div class="view-project-btn">
+                                    <i class="fas fa-eye"></i> عرض التفاصيل
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>إنشاء المواقع الإلكترونية</h3>
+                            <p>نصمم ونطور مواقع ويب متكاملة ومتجاوبة مع جميع الأجهزة بتقنيات حديثة.</p>
+                            <div class="project-tech">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                                <span>React</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- خدمة تطبيقات الموبايل -->
+                    <div class="project-card" data-project="mobile">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="تطبيقات الموبايل">
+                            <div class="project-overlay">
+                                <div class="view-project-btn">
+                                    <i class="fas fa-eye"></i> عرض التفاصيل
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>تطبيقات الموبايل</h3>
+                            <p>نطور تطبيقات ذكية لأنظمة iOS وAndroid بأحدث التقنيات والأداء المميز.</p>
+                            <div class="project-tech">
+                                <span>Flutter</span>
+                                <span>React Native</span>
+                                <span>Swift</span>
+                                <span>Kotlin</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- خدمة أنظمة الشركات -->
+                    <div class="project-card" data-project="system">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="أنظمة الشركات">
+                            <div class="project-overlay">
+                                <div class="view-project-btn">
+                                    <i class="fas fa-eye"></i> عرض التفاصيل
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>أنظمة إدارة الشركات</h3>
+                            <p>حلول برمجية متكاملة لإدارة العمليات والموارد في الشركات بكفاءة عالية.</p>
+                            <div class="project-tech">
+                                <span>ERP</span>
+                                <span>CRM</span>
+                                <span>HRM</span>
+                                <span>Accounting</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- خدمة متاجر إلكترونية -->
+                    <div class="project-card" data-project="ecommerce">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="مواقع التجارة الإلكترونية">
+                            <div class="project-overlay">
+                                <div class="view-project-btn">
+                                    <i class="fas fa-eye"></i> عرض التفاصيل
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>متاجر إلكترونية</h3>
+                            <p>منصات تجارة إلكترونية شاملة مع أنظمة دفع وإدارة مخزون متقدمة.</p>
+                            <div class="project-tech">
+                                <span>WooCommerce</span>
+                                <span>Shopify</span>
+                                <span>Payment Gateway</span>
+                                <span>Inventory</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- خدمة التطبيقات المالية -->
+                    <div class="project-card" data-project="finance">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1115&q=80" alt="التطبيقات المالية">
+                            <div class="project-overlay">
+                                <div class="view-project-btn">
+                                    <i class="fas fa-eye"></i> عرض التفاصيل
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>تطبيقات مالية</h3>
+                            <p>أنظمة إدارة مالية ومحاسبية متقدمة للشركات والأفراد.</p>
+                            <div class="project-tech">
+                                <span>Accounting</span>
+                                <span>Budgeting</span>
+                                <span>Analytics</span>
+                                <span>Reports</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>اتصل بنا</h2>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3>عنواننا</h3>
+                                <p>الأردن ~ عمان ~ العقبة</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h3>هاتفنا</h3>
+                                <p>+962795011908</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3>بريدنا الإلكتروني</h3>
+                                <p>omarbaniamer597@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3>ساعات العمل</h3>
+                                <p>الأحد - الخميس: 8 صباحاً - 6 مساءً</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">الاسم الكامل</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">البريد الإلكتروني</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">رقم الهاتف</label>
+                                <input type="tel" id="phone" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">الرسالة</label>
+                                <textarea id="message" class="form-control" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn">إرسال الرسالة</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-container">
+                    <div class="footer-about">
+                        <div class="footer-logo">
+                            <img src="dm (1).png" alt="شعار شركة DIGTL MIRROR" class="footer-logo-img">
+                            <div class="footer-logo-text">
+                                <h2>DIGTL MIRROR</h2>
+                                <span>متخصصة في تسهيل مشاريعك الرقمية</span>
+                            </div>
+                        </div>
+                        <p>نحن شركة برمجة متخصصة في تقديم حلول تقنية مبتكرة تساعد الشركات على النمو والازدهار في العصر الرقمي.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h3>روابط سريعة</h3>
+                        <ul>
+                            <li><a href="#home">الرئيسية</a></li>
+                            <li><a href="#services">خدماتنا</a></li>
+                            <li><a href="#projects">مشاريعنا</a></li>
+                            <li><a href="#contact">اتصل بنا</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-services">
+                        <h3>خدماتنا</h3>
+                        <ul>
+                            <li><a href="#services">تحليل البيانات</a></li>
+                            <li><a href="#services">أنظمة للشركات الناشئة</a></li>
+                            <li><a href="#services">خدمات برمجة للأفراد</a></li>
+                            <li><a href="#services">حلول برمجية للجماعات</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>جميع الحقوق محفوظة &copy; 2025 DIGTL MIRROR</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
