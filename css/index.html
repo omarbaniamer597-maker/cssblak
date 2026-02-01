@@ -8,6 +8,78 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- ساعة الخلفية الإبداعية -->
+<canvas id="creativeClock" class="creative-clock"></canvas>
+
+<!-- عناصر الساعة التفاعلية -->
+<div class="clock-controls">
+    <button id="toggleClock" class="clock-btn" title="تبديل الساعة">
+        <i class="fas fa-clock"></i>
+    </button>
+    <button id="changeClockTheme" class="clock-btn" title="تغيير الثيم">
+        <i class="fas fa-palette"></i>
+    </button>
+    <button id="clockSettings" class="clock-btn" title="الإعدادات">
+        <i class="fas fa-cog"></i>
+    </button>
+</div>
+
+<!-- إعدادات الساعة -->
+<div class="clock-settings-panel" id="clockSettingsPanel">
+    <h3><i class="fas fa-cog"></i> إعدادات الساعة الإبداعية</h3>
+    
+    <div class="setting-group">
+        <label for="clockSpeed">سرعة الحركة:</label>
+        <input type="range" id="clockSpeed" min="1" max="10" value="5">
+        <span id="speedValue">متوسط</span>
+    </div>
+    
+    <div class="setting-group">
+        <label for="clockIntensity">كثافة العناصر:</label>
+        <input type="range" id="clockIntensity" min="1" max="10" value="7">
+        <span id="intensityValue">عالية</span>
+    </div>
+    
+    <div class="setting-group">
+        <label for="clockColor">لون الساعة:</label>
+        <div class="color-picker">
+            <button class="color-option" data-color="#2563eb" style="background: #2563eb;"></button>
+            <button class="color-option" data-color="#10b981" style="background: #10b981;"></button>
+            <button class="color-option" data-color="#8b5cf6" style="background: #8b5cf6;"></button>
+            <button class="color-option" data-color="#f59e0b" style="background: #f59e0b;"></button>
+            <button class="color-option" data-color="#ec4899" style="background: #ec4899;"></button>
+        </div>
+    </div>
+    
+    <div class="setting-group">
+        <label for="clockEffects">التأثيرات:</label>
+        <select id="clockEffects">
+            <option value="particles">جسيمات</option>
+            <option value="waves">موجات</option>
+            <option value="circuits">دوائر كهربائية</option>
+            <option value="binary">أرقام ثنائية</option>
+            <option value="stars">نجوم</option>
+        </select>
+    </div>
+    
+    <div class="setting-group">
+        <label>
+            <input type="checkbox" id="clockParticles" checked>
+            إظهار الجسيمات
+        </label>
+        <label>
+            <input type="checkbox" id="clockGlow" checked>
+            تأثير التوهج
+        </label>
+        <label>
+            <input type="checkbox" id="clockInteraction" checked>
+            التفاعل مع الماوس
+        </label>
+    </div>
+    
+    <button id="saveClockSettings" class="btn btn-small">حفظ الإعدادات</button>
+    <button id="resetClockSettings" class="btn btn-small btn-outline">إعادة ضبط</button>
+</div>
     <!-- صفحة الانتظار الزرقاء -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-logo">
@@ -122,7 +194,6 @@
                         <li><a href="#home">الرئيسية</a></li>
                         <li><a href="#services">خدماتنا</a></li>
                         <li><a href="#projects">مشاريعنا</a></li>
-                        <li><a href="#team">فريق العمل</a></li>
                         <li><a href="#contact">اتصل بنا</a></li>
                     </ul>
                 </nav>
@@ -134,7 +205,6 @@
             <div class="nav-dot active" data-target="home" data-tooltip="الرئيسية"></div>
             <div class="nav-dot" data-target="services" data-tooltip="خدماتنا"></div>
             <div class="nav-dot" data-target="projects" data-tooltip="مشاريعنا"></div>
-            <div class="nav-dot" data-target="team" data-tooltip="فريق العمل"></div>
             <div class="nav-dot" data-target="contact" data-tooltip="اتصل بنا"></div>
         </div>
 
@@ -144,9 +214,30 @@
                 <div class="hero-content">
                     <h2>نطور حلول برمجية تواكب تطلعات أعمالك</h2>
                     <p>نحن شركة برمجة متخصصة في تطوير حلول تقنية مبتكرة تساعد الشركات على النمو والازدهار في العصر الرقمي. نقدم تطبيقات ويب وموبايل مخصصة بأحدث التقنيات.</p>
+                    
+                    <!-- إحصائيات -->
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>+50</h3>
+                            <p>مشروع مكتمل</p>
+                        </div>
+                        <div class="stat">
+                            <h3>+30</h3>
+                            <p>عميل راضٍ</p>
+                        </div>
+                        <div class="stat">
+                            <h3>5+</h3>
+                            <p>سنوات خبرة</p>
+                        </div>
+                        <div class="stat">
+                            <h3>100%</h3>
+                            <p>رضا العملاء</p>
+                        </div>
+                    </div>
+                    
                     <button class="btn" id="showProjectsBtn">استعرض مشاريعنا</button>
                 </div>
-                <div class="hero-image">
+                <div class="hero-image parallax-img">
                     <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="برمجة وتطوير">
                 </div>
             </div>
@@ -495,6 +586,11 @@
             </div>
         </footer>
     </div>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>
